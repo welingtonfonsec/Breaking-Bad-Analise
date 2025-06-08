@@ -15,6 +15,8 @@ Apresentação em forma de [Storytelling no Power BI](https://app.powerbi.com/vi
 
 [4. Processamento e Exploração](#processamento-e-exploração)
 
+[5. Análise e Visualização](#análise-e-visualização)
+
 
 
 
@@ -750,3 +752,5 @@ std        20045.035902
 Após o merge dos dois DataFrames, o resultado ficou excelente: mantivemos os 62 episódios e todas as colunas esperadas estão lá. A renomeação da sinopse para episode_description funcionou, assim como o tratamento de valores ausentes em us_viewers — agora todas as colunas estão completas, sem nenhum NaN.
 
 Em relação aos tipos de dados, tudo está no formato ideal: datas convertidas corretamente, colunas numéricas e categóricas bem definidas. A saída do .describe() só confirma o que já vínhamos observando — dados bem estruturados, padrões claros de audiência e notas altas no IMDb. Isso mostra que o processo de integração e limpeza foi bem-sucedido e o dataset final está pronto para análises mais aprofundadas.
+
+## Análise e Visualização
