@@ -294,4 +294,44 @@ A coluna original_air_date está como object (string) e precisa ser convertida p
 Outras Colunas:
 As demais colunas (season, episode_num, title, imdb_rating, total_votes, desc) parecem estar com os tipos de dados corretos e sem valores ausentes.
 
+```
+# Gerando estatísticas descritivas para colunas numéricas
+print("\n5. df_imdb.describe():")
+print(df_imdb.describe())
+
+df_imdb.describe():
+          season  episode_num  imdb_rating    total_votes
+count  62.000000    62.000000    62.000000      62.000000
+mean    3.290323     7.048387     9.027419   25414.838710
+std     1.359690     4.074822     0.507378   20045.035902
+min     1.000000     1.000000     7.900000   16545.000000
+25%     2.000000     4.000000     8.700000   17714.250000
+50%     3.000000     7.000000     8.900000   20582.500000
+75%     4.750000    10.000000     9.450000   23945.000000
+max     5.000000    16.000000    10.000000  150341.000000
+```
+
+Estrutura (Revisão):
+
+- As colunas `season` e `episode_num` fornecem informações consistentes sobre a estrutura da série, com **62 episódios distribuídos em 5 temporadas**, como já observado no `df_episodes`.
+
+---
+
+Aclamação da Crítica e do Público (`imdb_rating`):
+
+- **count (62)**: Temos **avaliações do IMDb para todos os 62 episódios**, sem valores ausentes.
+- **mean (9.017742)**: A **média de 9.02** de notas no IMDb
+- **min (7.90)**: O episódio com a nota mais baixa no IMDb
+- **max (10.00)**: Um episódio atingiu a **nota máxima de 10.0** .
+- **50% (mediana): 9.00**: Metade dos episódios tem **nota igual ou superior a 9.0**.
+
+---
+
+Engajamento Massivo do Público (`total_votes`):
+
+- **count (62)**: Sem valores ausentes.
+- **mean (25.414,84 votos)**: A média de mais de **25 mil votos por episódio**
+- **min (16.545 votos)**: Episódio com **menos votos** teve mais de **16 mil votos**.
+- **max (158.341 votos)**: Esse valor é o **dado mais impactante**: reflete como a série se tornou **viral**, especialmente nos episódios finais. 
+
 
