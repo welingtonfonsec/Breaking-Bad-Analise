@@ -803,7 +803,7 @@ plt.ylim(0, 2)  # limite ajustado conforme valores da 1ª temporada (~1.5M)
 plt.show()
 ```
 
-<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/3.png"" width="50%">
+<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/3.png" alt="" width="50%">
 
 Mesmo em seus primeiros episódios, Breaking Bad já mostrava sinais claros de qualidade e potencial. A 1ª temporada apresentou avaliações sólidas no IMDb — todas acima de 8 —, um volume considerável de votos do público, e uma audiência que, embora modesta no início, se manteve estável e engajada até o final da temporada. Esses dados mostram que a série começou bem, conquistando aos poucos um público fiel e uma recepção crítica muito positiva.
 
@@ -821,8 +821,7 @@ plt.grid(True)
 plt.show()
 ```
 
-<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/4.png"" width="50%">
-
+<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/4.png" alt="" width="50%">
 ```
 plt.figure(figsize=(10, 6))
 sns.barplot(data=df_combined, x="season_episodes", y="imdb_rating", palette="Blues_d")
@@ -833,7 +832,7 @@ plt.ylim(0, 10)
 plt.show()
 ```
 
-<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/5.png"" width="50%">
+<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/5.png" alt="" width="50%">
 
 ```
 plt.figure(figsize=(14, 6))
@@ -845,7 +844,7 @@ plt.grid(True)
 plt.show()
 ```
 
-<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/6.png"" width="50%">
+<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/6.png" alt="" width="50%">
 
 ```
 plt.figure(figsize=(14, 6))
@@ -857,7 +856,7 @@ plt.grid(True)
 plt.show()
 ```
 
-<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/7.png"" width="50%">
+<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/7.png" alt="" width="50%">
 
 À medida que a série avança, Breaking Bad deixa de ser apenas promissora e se transforma em um fenômeno. As avaliações no IMDb seguem em uma trajetória crescente, com a média subindo temporada após temporada e diversos episódios ultrapassando a nota 9 — algo raro em séries de longa duração.
 
@@ -881,7 +880,7 @@ plt.xlim(9, 10.1)
 plt.show()
 ```
 
-<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/8.png"" width="50%">
+<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/8.png" alt="" width="50%">
 
 ```
 # Filtrar os últimos 6 episódios
@@ -897,7 +896,7 @@ plt.grid(True)
 plt.show()
 ```
 
-<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/9.png"" width="50%">
+<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/9.png" alt="" width="50%">
 
 ```
 plt.figure(figsize=(10, 6))
@@ -909,7 +908,7 @@ plt.xticks(rotation=45)
 plt.show()
 ```
 
-<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/10.png"" width="50%">
+<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/10.png" alt="" width="50%">
 
 Os dados confirmam o que muitos fãs já sentem: Breaking Bad terminou em seu auge. O gráfico dos episódios mais bem avaliados mostra um feito raro — não apenas por ter um episódio com nota 10 (“Ozymandias”), mas por concentrar os cinco melhores episódios justamente nas temporadas finais. Isso demonstra uma consistência crescente, algo difícil de alcançar em séries longas.
 
