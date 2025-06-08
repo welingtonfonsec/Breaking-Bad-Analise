@@ -207,5 +207,37 @@ Audiência (`us_viewers`):
 - **50% (mediana): 1.71 milhões**: Metade dos episódios teve **menos de 1.71 milhões de espectadores**.  
   Isso indica que a audiência foi **crescendo gradualmente ao longo da série**.
 
+  ####Explorando df_imdb
+```
+# Visualizando as primeiras linhas
+print("\n1. df_imdb.head():")
+print(df_imdb.head())
+
+df_imdb.head():
+   season  episode_num                          title original_air_date  \
+0       1            1                          Pilot        2008-01-20   
+1       1            2            Cat's in the Bag...        2008-01-27   
+2       1            3  ...And the Bag's in the River        2008-02-10   
+3       1            4                     Cancer Man        2008-02-17   
+4       1            5                    Gray Matter        2008-02-24   
+
+   imdb_rating  total_votes                                               desc  
+0          9.1        30419  Diagnosed with terminal lung cancer, chemistry...  
+1          8.7        22282  After their first drug deal goes terribly wron...  
+2          8.8        21633  Walt and Jesse clean up after the bathtub inci...  
+3          8.3        20912  Walt tells the rest of his family about his ca...  
+4          8.4        20546  Walt rejects everyone who tries to help him wi... 
+```
+
+Dataset df_episodes possui 8 colunas:
+- **season**: Número da temporada.
+- **episode_num**: Número do episódio dentro da temporada.
+- **title**: Título do episódio.
+- **original_air_date**: Data de exibição original.
+- **imdb_rating**: Avaliação do episódio no IMDb.
+- **total_votes**: Número total de votos no IMDb.
+- **desc**: Descrição ou sinopse do episódio.  
+  
+
 
 
