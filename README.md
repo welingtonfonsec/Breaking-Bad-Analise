@@ -208,7 +208,7 @@ Audiência (`us_viewers`):
 - **50% (mediana): 1.71 milhões**: Metade dos episódios teve **menos de 1.71 milhões de espectadores**.  
   Isso indica que a audiência foi **crescendo gradualmente ao longo da série**.
 
-  ####Explorando df_imdb
+#### Explorando df_imdb
 ```
 # Visualizando as primeiras linhas
 print("\n1. df_imdb.head():")
