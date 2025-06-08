@@ -781,3 +781,154 @@ plt.show()
 ```
 
 <img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/1.png" alt="" width="50%">
+
+```
+plt.figure(figsize=(12, 6))
+sns.barplot(data=temporada_1, x="episode_num_in_season", y="imdb_total_votes", palette="Greens_d")
+plt.title("Total de Votos no IMDb por Episódio - Temporada 1")
+plt.xlabel("Episódio")
+plt.ylabel("Número de Votos")
+plt.show()
+```
+
+<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/2.png"" width="50%">
+
+```
+plt.figure(figsize=(12, 6))
+sns.barplot(data=temporada_1, x="episode_num_in_season", y=temporada_1["us_viewers"] / 1_000_000, palette="Oranges_d")
+plt.title("Audiência nos EUA por Episódio - Temporada 1")
+plt.xlabel("Episódio")
+plt.ylabel("Espectadores (milhões)")
+plt.ylim(0, 2)  # limite ajustado conforme valores da 1ª temporada (~1.5M)
+plt.show()
+```
+
+<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/3.png"" width="50%">
+
+Mesmo em seus primeiros episódios, Breaking Bad já mostrava sinais claros de qualidade e potencial. A 1ª temporada apresentou avaliações sólidas no IMDb — todas acima de 8 —, um volume considerável de votos do público, e uma audiência que, embora modesta no início, se manteve estável e engajada até o final da temporada. Esses dados mostram que a série começou bem, conquistando aos poucos um público fiel e uma recepção crítica muito positiva.
+
+E o mais interessante vem agora: a partir da segunda temporada, esse engajamento inicial se transforma em crescimento acelerado — tanto em popularidade quanto em aclamação crítica. Vamos ver como Breaking Bad saiu de um bom começo para se tornar um verdadeiro fenômeno.
+
+##### Crescimento e Reconhecimento
+```
+plt.figure(figsize=(14, 6))
+sns.lineplot(data=df_combined, x="episode_num_overall", y="imdb_rating", marker="o", color="steelblue")
+plt.title("Evolução da Avaliação IMDb por Episódio")
+plt.xlabel("Episódio (ordem geral)")
+plt.ylabel("IMDb Rating")
+plt.ylim(0, 10)
+plt.grid(True)
+plt.show()
+```
+
+<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/4.png"" width="50%">
+
+```
+plt.figure(figsize=(10, 6))
+sns.barplot(data=df_combined, x="season_episodes", y="imdb_rating", palette="Blues_d")
+plt.title("Média da Avaliação IMDb por Temporada")
+plt.xlabel("Temporada")
+plt.ylabel("IMDb Rating (Média)")
+plt.ylim(0, 10)
+plt.show()
+```
+
+<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/5.png"" width="50%">
+
+```
+plt.figure(figsize=(14, 6))
+sns.lineplot(data=df_combined, x="episode_num_overall", y="imdb_total_votes", marker="o", color="seagreen")
+plt.title("Total de Votos no IMDb por Episódio")
+plt.xlabel("Episódio (ordem geral)")
+plt.ylabel("Número de Votos")
+plt.grid(True)
+plt.show()
+```
+
+<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/6.png"" width="50%">
+
+```
+plt.figure(figsize=(14, 6))
+sns.lineplot(data=df_combined, x="episode_num_overall", y=df_combined["us_viewers"] / 1_000_000, marker="o", color="darkorange")
+plt.title("Audiência nos EUA por Episódio")
+plt.xlabel("Episódio (ordem geral)")
+plt.ylabel("Espectadores (milhões)")
+plt.grid(True)
+plt.show()
+```
+
+<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/7.png"" width="50%">
+
+À medida que a série avança, Breaking Bad deixa de ser apenas promissora e se transforma em um fenômeno. As avaliações no IMDb seguem em uma trajetória crescente, com a média subindo temporada após temporada e diversos episódios ultrapassando a nota 9 — algo raro em séries de longa duração.
+
+O público também responde: o número de votos por episódio dispara nas temporadas finais, chegando a picos impressionantes, sinal de um engajamento massivo e de uma base de fãs cada vez mais ativa. Esse crescimento é reforçado pelos dados de audiência: enquanto muitas séries perdem força com o tempo, Breaking Bad segue o caminho oposto, atraindo cada vez mais espectadores, especialmente em seus momentos decisivos.
+
+Os dados não deixam dúvidas: a série não apenas manteve sua qualidade ao longo dos anos — ela evoluiu, conquistando crítica e público de forma consistente.
+
+##### A Consagração – Episódios Lendários e um Final Épico
+
+```
+# Selecionar os top 5 episódios com maior nota
+
+top_5 = df_combined.sort_values(by="imdb_rating", ascending=False).head(5)
+
+plt.figure(figsize=(10, 6))
+sns.barplot(data=top_5, y="title_episodes", x="imdb_rating", palette="Blues_d")
+plt.title("Top 5 Episódios Mais Bem Avaliados no IMDb")
+plt.xlabel("Nota IMDb")
+plt.ylabel("Episódio")
+plt.xlim(9, 10.1)
+plt.show()
+```
+
+<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/8.png"" width="50%">
+
+```
+# Filtrar os últimos 6 episódios
+final_episodios = df_combined.sort_values(by="episode_num_overall", ascending=False).head(6).sort_values(by="episode_num_overall")
+
+plt.figure(figsize=(10, 6))
+sns.lineplot(data=final_episodios, x="title_episodes", y=final_episodios["us_viewers"] / 1_000_000, marker="o", color="darkorange")
+plt.title("Audiência dos Episódios Finais de Breaking Bad")
+plt.xlabel("Episódio")
+plt.ylabel("Espectadores (milhões)")
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.show()
+```
+
+<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/9.png"" width="50%">
+
+```
+plt.figure(figsize=(10, 6))
+sns.barplot(data=final_episodios, x="title_episodes", y="imdb_total_votes", palette="Greens_d")
+plt.title("Total de Votos no IMDb – Episódios Finais")
+plt.xlabel("Episódio")
+plt.ylabel("Número de Votos")
+plt.xticks(rotation=45)
+plt.show()
+```
+
+<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/10.png"" width="50%">
+
+Os dados confirmam o que muitos fãs já sentem: Breaking Bad terminou em seu auge. O gráfico dos episódios mais bem avaliados mostra um feito raro — não apenas por ter um episódio com nota 10 (“Ozymandias”), mas por concentrar os cinco melhores episódios justamente nas temporadas finais. Isso demonstra uma consistência crescente, algo difícil de alcançar em séries longas.
+
+Esse reconhecimento também se reflete na audiência: os últimos episódios apresentam uma escalada nítida de espectadores, culminando com mais de 10 milhões de pessoas assistindo ao episódio final, “Felina”. E o engajamento do público foi igualmente impressionante — episódios como “Ozymandias” e “Felina” somam dezenas de milhares de votos no IMDb, consolidando seu impacto cultural.
+
+A reta final de Breaking Bad não apenas manteve o nível. Ela elevou a série a um patamar histórico.
+
+
+##### Conclusão: Dados que Contam uma História
+
+Ao longo das cinco temporadas de Breaking Bad, vimos uma narrativa poderosa não apenas na tela, mas também nos dados.
+
+A série começou bem, com boas avaliações e uma base de público sólida. Mas foi com o passar dos episódios que ela realmente se transformou em um fenômeno. As notas no IMDb cresceram, a média por temporada se manteve altíssima, e os episódios finais atingiram um nível de aclamação raramente visto — inclusive com um episódio nota 10, milhares de votos e mais de 10 milhões de espectadores no encerramento.
+
+A trajetória revelada pelos dados reforça aquilo que a crítica e o público já sabiam: Breaking Bad não só manteve sua qualidade ao longo do tempo — ela melhorou. Cresceu em relevância, conquistou uma audiência cada vez mais engajada e entregou um final à altura da sua história.
+
+Mais do que estatísticas, esses números contam uma verdade difícil de ignorar: Breaking Bad é, sem dúvida, uma das maiores séries já feitas. E os dados só ajudam a provar isso.
+
+
+
+
+
