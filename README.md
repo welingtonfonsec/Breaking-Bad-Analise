@@ -118,5 +118,26 @@ Dataset df_episodes possui 8 colunas:
 **Original_Air_Date:** A data em que o episódio foi originalmente exibido nos Estados Unidos;
 **US_Viewers_Millions:** O número de espectadores (em milhões) que assistiram à primeira exibição do episódio nos EUA.
 
+```
+# Visualizando as últimas linhas
+print("\n2. df_episodes.tail():")
+print(df_episodes.tail())
+
+
+df_episodes.tail():
+    season  episode_num_in_season  episode_num_overall          title  \
+57       5                     12                   58      Rabid Dog   
+58       5                     13                   59    To'hajiilee   
+59       5                     14                   60     Ozymandias   
+60       5                     15                   61  Granite State   
+61       5                     16                   62         Felina   
+
+          directed_by            written_by original_air_date  us_viewers  
+57         Sam Catlin            Sam Catlin        2013-09-01   4410000.0  
+58  Michelle MacLaren        George Mastras        2013-09-08   5110000.0  
+59       Rian Johnson  Moira Walley-Beckett        2013-09-15   6370000.0  
+60        Peter Gould           Peter Gould        2013-09-22   6580000.0  
+61     Vince Gilligan        Vince Gilligan        2013-09-29  10280000.0 
+```
 
 
