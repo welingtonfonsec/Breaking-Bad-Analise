@@ -791,7 +791,7 @@ plt.ylabel("Número de Votos")
 plt.show()
 ```
 
-<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/2.png"" width="50%">
+<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/2.png" alt="" width="50%">
 
 ```
 plt.figure(figsize=(12, 6))
