@@ -13,7 +13,7 @@ Apresentação em forma de [Storytelling no Power BI](https://app.powerbi.com/vi
 
 [3. Dados](#dados)
 
-
+[4. Processamento e Exploração](#processamento-e-exploração)
 
 
 
@@ -57,3 +57,4 @@ Especificamente, este estudo de caso permite responder a perguntas como:
   * Pequeno Tamanho: Embora o dataset seja completo para o escopo da série, a quantidade de registros (62 episódios) é considerada pequena em comparação a bases de dados mais abrangentes, o que pode limitar análises estatísticas mais complexas em outros contextos;
   * Dados Ausentes ou Parciais: Identificou-se que alguns episódios apresentavam valores ausentes em certas colunas, como US_Viewers_Millions, especialmente nas primeiras temporadas, porém foi realizado um tratamento para preencher ou gerenciar esses valores ausentes, garantindo a integridade dos dados para a análise.
   
+## Processamento e Exploração
