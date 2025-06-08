@@ -108,15 +108,16 @@ print(df_episodes.head())
 4        2008-02-24    970000.0  
 ```
 
-Dataset df_episodes possui 8 colunas:
-**Season**: O número da temporada a que o episódio pertence;
-**Episode_Number_in_Season**: O número do episódio dentro daquela temporada específica;
-**Episode_Number_Overall**: O número sequencial do episódio considerando a série inteira;
-**Title:** O título do episódio;
-**Directed_by:** O nome do diretor do episódio;
-**Written_by**: O nome do roteirista do episódio;
-**Original_Air_Date:** A data em que o episódio foi originalmente exibido nos Estados Unidos;
-**US_Viewers_Millions:** O número de espectadores (em milhões) que assistiram à primeira exibição do episódio nos EUA.
+Dataset `df_episodes` possui 8 colunas:
+
+- **Season**: O número da temporada a que o episódio pertence;
+- **Episode_Number_in_Season**: O número do episódio dentro daquela temporada específica;
+- **Episode_Number_Overall**: O número sequencial do episódio considerando a série inteira;
+- **Title**: O título do episódio;
+- **Directed_by**: O nome do diretor do episódio;
+- **Written_by**: O nome do roteirista do episódio;
+- **Original_Air_Date**: A data em que o episódio foi originalmente exibido nos Estados Unidos;
+- **US_Viewers_Millions**: O número de espectadores (em milhões) que assistiram à primeira exibição do episódio nos EUA.
 
 ```
 # Visualizando as últimas linhas
