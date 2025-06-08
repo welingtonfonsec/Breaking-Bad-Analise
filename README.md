@@ -477,3 +477,276 @@ Data columns (total 7 columns):
 dtypes: datetime64[ns](1), float64(1), int64(3), object(2)
 memory usage: 3.5+ KB
 ```
+
+
+#### Unificação/Combinação de Dados
+
+#### Criar a Coluna episode_ID em df_episodes
+
+Agora será criada uma coluna chamada episode_ID concatenando a season e episode_num_in_season, com um formato SXXEXX (Temporada X, Episódio Y).
+```
+print("--- 6.1. Criar a Coluna 'episode_ID' em df_episodes ---")
+
+# Para garantir a formatação 'S01E01', convertemos para string e preenchemos com zeros à esquerda
+df_episodes['episode_ID'] = 'S' + df_episodes['season'].astype(str).str.zfill(2) + \
+                            'E' + df_episodes['episode_num_in_season'].astype(str).str.zfill(2)
+
+print("Coluna 'episode_ID' criada em df_episodes.")
+print(df_episodes[['season', 'episode_num_in_season', 'episode_ID']].head())
+
+--- 6.1. Criar a Coluna 'episode_ID' em df_episodes ---
+Coluna 'episode_ID' criada em df_episodes.
+   season  episode_num_in_season episode_ID
+0       1                      1     S01E01
+1       1                      2     S01E02
+2       1                      3     S01E03
+3       1                      4     S01E04
+4       1                      5     S01E05
+```
+
+#### Criar a Coluna episode_ID em df_imdb
+
+```
+Da mesma forma, criaremos a coluna episode_ID em df_imdb usando season e episode_num.
+
+print("\n--- 6.2. Criar a Coluna 'episode_ID' em df_imdb ---")
+
+# Para garantir a formatação 'S01E01', convertemos para string e preenchemos com zeros à esquerda
+df_imdb['episode_ID'] = 'S' + df_imdb['season'].astype(str).str.zfill(2) + \
+                        'E' + df_imdb['episode_num'].astype(str).str.zfill(2)
+
+print("Coluna 'episode_ID' criada em df_imdb.")
+print(df_imdb[['season', 'episode_num', 'episode_ID']].head())
+
+--- 6.2. Criar a Coluna 'episode_ID' em df_imdb ---
+Coluna 'episode_ID' criada em df_imdb.
+   season  episode_num episode_ID
+0       1            1     S01E01
+1       1            2     S01E02
+2       1            3     S01E03
+3       1            4     S01E04
+4       1            5     S01E05
+```
+
+#### Executar o Merge dos DataFrames Usando episode_ID
+
+Agora que temos uma chave comum e única em ambos os DataFrames, podemos realizar o inner merge para juntar ambos de forma segura.
+
+```
+print("\n--- 6.3. Executar o Merge dos DataFrames Usando 'episode_ID' ---")
+
+# Realizar o inner merge usando 'episode_ID' como chave
+# Note que 'title' e 'original_air_date' ainda serão duplicados e renomeados com sufixos
+df_combined = pd.merge(df_episodes, df_imdb,
+                       on='episode_ID', # Apenas uma coluna de chave agora!
+                       how='inner',
+                       suffixes=('_episodes', '_imdb'))
+
+print("DataFrames df_episodes e df_imdb combinados com sucesso em df_combined usando 'episode_ID'!")
+
+# Verificar o shape do DataFrame combinado
+print(f"\nShape do DataFrame combinado (df_combined): {df_combined.shape}")
+
+# Exibir as primeiras linhas do DataFrame combinado para inspeção
+print("\n--- Primeiras 5 linhas de df_combined ---")
+print(df_combined.head())
+
+--- 6.3. Executar o Merge dos DataFrames Usando 'episode_ID' ---
+DataFrames df_episodes e df_imdb combinados com sucesso em df_combined usando 'episode_ID'!
+
+Shape do DataFrame combinado (df_combined): (62, 16)
+
+--- Primeiras 5 linhas de df_combined ---
+   season_episodes  episode_num_in_season  episode_num_overall  \
+0                1                      1                    1   
+1                1                      2                    2   
+2                1                      3                    3   
+3                1                      4                    4   
+4                1                      5                    5   
+
+                  title_episodes     directed_by      written_by  \
+0                          Pilot  Vince Gilligan  Vince Gilligan   
+1            Cat's in the Bag...  Adam Bernstein  Vince Gilligan   
+2  ...And the Bag's in the River  Adam Bernstein  Vince Gilligan   
+3                     Cancer Man       Jim McKay  Vince Gilligan   
+4                    Gray Matter    Tricia Brock       Patty Lin   
+
+  original_air_date_episodes  us_viewers episode_ID  season_imdb  episode_num  \
+0                 2008-01-20   1410000.0     S01E01            1            1   
+1                 2008-01-27   1490000.0     S01E02            1            2   
+2                 2008-02-10   1080000.0     S01E03            1            3   
+3                 2008-02-17   1090000.0     S01E04            1            4   
+4                 2008-02-24    970000.0     S01E05            1            5   
+
+                      title_imdb original_air_date_imdb  imdb_rating  \
+0                          Pilot             2008-01-20          9.1   
+1            Cat's in the Bag...             2008-01-27          8.7   
+2  ...And the Bag's in the River             2008-02-10          8.8   
+3                     Cancer Man             2008-02-17          8.3   
+4                    Gray Matter             2008-02-24          8.4   
+
+   total_votes                                               desc  
+0        30419  Diagnosed with terminal lung cancer, chemistry...  
+1        22282  After their first drug deal goes terribly wron...  
+2        21633  Walt and Jesse clean up after the bathtub inci...  
+3        20912  Walt tells the rest of his family about his ca...  
+4        20546  Walt rejects everyone who tries to help him wi...  
+
+```
+
+#### Tratamento de Colunas
+
+Após o merge, ainda teremos algumas colunas redundantes que vieram de ambos os DataFrames (além do episode_ID que foi a chave de junção). Mas antes, será preciso mudar o nome de algumas para deixar de mais facil entendimento.
+```
+# Renomeando as colunas que vieram do df_imdb para algo mais claro
+df_combined.rename(columns={
+    'total_votes': 'imdb_total_votes',
+    'desc': 'episode_description',
+    'season_imdb': 'season_from_imdb',
+    'episode_num_in_season_imdb': 'episode_num_in_season_from_imdb'
+}, inplace=True)
+
+
+# Removendo as colunas que não precisamos
+# Vamos remover a versão '_imdb' das colunas que já temos do df_episodes (title, original_air_date)
+# E também as chaves season e episode_num_in_season que vieram do df_imdb (se você quer manter apenas a de df_episodes)
+columns_to_drop = [
+    'season_from_imdb', # Já temos 'season' do df_episodes
+    'episode_num_in_season_from_imdb', # Já temos 'episode_num_in_season' do df_episodes
+    'title_imdb', # Já temos 'title' do df_episodes
+    'original_air_date_imdb' # Já temos 'original_air_date' do df_episodes
+]
+
+
+# Remover as colunas se existirem no DataFrame
+for col in columns_to_drop:
+    if col in df_combined.columns:
+        df_combined.drop(columns=[col], inplace=True)
+        print(f"Coluna '{col}' removida.")
+
+Coluna 'season_from_imdb' removida.
+Coluna 'title_imdb' removida.
+Coluna 'original_air_date_imdb' removida.
+
+
+# Uma última verificação para o shape final
+print(f"\nShape final do DataFrame combinado (df_combined) após remover redundâncias: {df_combined.shape}")
+
+Shape final do DataFrame combinado (df_combined) após remover redundâncias: (62, 13)
+
+# E as colunas finais
+print("\nColunas finais do DataFrame combinado:")
+print(df_combined.columns.tolist())
+
+Colunas finais do DataFrame combinado:
+['season_episodes', 'episode_num_in_season', 'episode_num_overall', 'title_episodes', 'directed_by', 'written_by', 'original_air_date_episodes', 'us_viewers', 'episode_ID', 'episode_num', 'imdb_rating', 'imdb_total_votes', 'episode_description']
+
+# Exibir as primeiras linhas do DataFrame FINAL combinado para inspeção
+print("\n--- Primeiras 5 linhas do df_combined FINAL ---")
+print(df_combined.head()
+
+
+--- Primeiras 5 linhas do df_combined FINAL ---
+   season_episodes  episode_num_in_season  episode_num_overall  \
+0                1                      1                    1   
+1                1                      2                    2   
+2                1                      3                    3   
+3                1                      4                    4   
+4                1                      5                    5   
+
+                  title_episodes     directed_by      written_by  \
+0                          Pilot  Vince Gilligan  Vince Gilligan   
+1            Cat's in the Bag...  Adam Bernstein  Vince Gilligan   
+2  ...And the Bag's in the River  Adam Bernstein  Vince Gilligan   
+3                     Cancer Man       Jim McKay  Vince Gilligan   
+4                    Gray Matter    Tricia Brock       Patty Lin   
+
+  original_air_date_episodes  us_viewers episode_ID  episode_num  imdb_rating  \
+0                 2008-01-20   1410000.0     S01E01            1          9.1   
+1                 2008-01-27   1490000.0     S01E02            2          8.7   
+2                 2008-02-10   1080000.0     S01E03            3          8.8   
+3                 2008-02-17   1090000.0     S01E04            4          8.3   
+4                 2008-02-24    970000.0     S01E05            5          8.4   
+
+   imdb_total_votes                                episode_description  
+0             30419  Diagnosed with terminal lung cancer, chemistry...  
+1             22282  After their first drug deal goes terribly wron...  
+2             21633  Walt and Jesse clean up after the bathtub inci...  
+3             20912  Walt tells the rest of his family about his ca...  
+4             20546  Walt rejects everyone who tries to help him wi...
+
+´´´
+
+#### Verificação Final e Preparação para Análise
+
+´´´
+print("--- 7.1. Verificação Final: df_combined.info() ---")
+print("\nInformações sobre o DataFrame combinado após todo o tratamento:")
+df_combined.info()
+
+print("\n\n--- 7.1. Verificação Final: df_combined.describe() ---")
+print("\nEstatísticas descritivas do DataFrame combinado após todo o tratamento:")
+print(df_combined.describe())
+
+--- 7.1. Verificação Final: df_combined.info() ---
+
+Informações sobre o DataFrame combinado após todo o tratamento:
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 62 entries, 0 to 61
+Data columns (total 13 columns):
+ #   Column                      Non-Null Count  Dtype         
+---  ------                      --------------  -----         
+ 0   season_episodes             62 non-null     int64         
+ 1   episode_num_in_season       62 non-null     int64         
+ 2   episode_num_overall         62 non-null     int64         
+ 3   title_episodes              62 non-null     object        
+ 4   directed_by                 62 non-null     object        
+ 5   written_by                  62 non-null     object        
+ 6   original_air_date_episodes  62 non-null     datetime64[ns]
+ 7   us_viewers                  62 non-null     float64       
+ 8   episode_ID                  62 non-null     object        
+ 9   episode_num                 62 non-null     int64         
+ 10  imdb_rating                 62 non-null     float64       
+ 11  imdb_total_votes            62 non-null     int64         
+ 12  episode_description         62 non-null     object        
+dtypes: datetime64[ns](1), float64(2), int64(5), object(5)
+memory usage: 6.4+ KB
+
+
+--- 7.1. Verificação Final: df_combined.describe() ---
+
+Estatísticas descritivas do DataFrame combinado após todo o tratamento:
+       season_episodes  episode_num_in_season  episode_num_overall  \
+count        62.000000              62.000000            62.000000   
+mean          3.290323               7.048387            31.500000   
+min           1.000000               1.000000             1.000000   
+25%           2.000000               4.000000            16.250000   
+50%           3.000000               7.000000            31.500000   
+75%           4.750000              10.000000            46.750000   
+max           5.000000              16.000000            62.000000   
+std           1.359690               4.074822            18.041619   
+
+          original_air_date_episodes    us_viewers  episode_num  imdb_rating  \
+count                             62  6.200000e+01    62.000000    62.000000   
+mean   2010-11-13 13:09:40.645161216  2.274839e+06     7.048387     9.027419   
+min              2008-01-20 00:00:00  9.700000e+05     1.000000     7.900000   
+25%              2009-05-04 18:00:00  1.492500e+06     4.000000     8.700000   
+50%              2010-06-02 12:00:00  1.710000e+06     7.000000     8.900000   
+75%              2012-05-06 00:00:00  2.267500e+06    10.000000     9.450000   
+max              2013-09-29 00:00:00  1.028000e+07    16.000000    10.000000   
+std                              NaN  1.655870e+06     4.074822     0.507378   
+
+       imdb_total_votes  
+count         62.000000  
+mean       25414.838710  
+min        16545.000000  
+25%        17714.250000  
+50%        20582.500000  
+75%        23945.000000  
+max       150341.000000  
+std        20045.035902
+´´´
+
+Após o merge dos dois DataFrames, o resultado ficou excelente: mantivemos os 62 episódios e todas as colunas esperadas estão lá. A renomeação da sinopse para episode_description funcionou, assim como o tratamento de valores ausentes em us_viewers — agora todas as colunas estão completas, sem nenhum NaN.
+
+Em relação aos tipos de dados, tudo está no formato ideal: datas convertidas corretamente, colunas numéricas e categóricas bem definidas. A saída do .describe() só confirma o que já vínhamos observando — dados bem estruturados, padrões claros de audiência e notas altas no IMDb. Isso mostra que o processo de integração e limpeza foi bem-sucedido e o dataset final está pronto para análises mais aprofundadas.
