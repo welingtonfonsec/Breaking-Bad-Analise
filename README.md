@@ -237,8 +237,61 @@ Dataset df_episodes possui 8 colunas:
 - **original_air_date**: Data de exibição original.
 - **imdb_rating**: Avaliação do episódio no IMDb.
 - **total_votes**: Número total de votos no IMDb.
-- **desc**: Descrição ou sinopse do episódio.  
-  
+- **desc**: Descrição ou sinopse do episódio.
 
+```
+# Visualizando as últimas linhas
+print("\n2. df_imdb.tail():")
+print(df_imdb.tail())
+
+df_imdb.tail():
+    season  episode_num          title original_air_date  imdb_rating  \
+57       5           12      Rabid Dog        2013-09-01          9.2   
+58       5           13    To'hajiilee        2013-09-08          9.8   
+59       5           14     Ozymandias        2013-09-15         10.0   
+60       5           15  Granite State        2013-09-22          9.7   
+61       5           16         Felina        2013-09-29          9.9   
+
+    total_votes                                               desc  
+57        23661  Walt discovers Jesse broke into his house and ...  
+58        39551  Jesse and Hank come up with an idea to take Wa...  
+59       150341  Walt goes on the run. Jesse is taken hostage. ...  
+60        39590  Walt struggles as he adapts to aspects of his ...  
+61       101628  Walter White makes one last attempt to secure ... 
+```
+
+Dataset df_episodes possui **62 linhas** contando com a linha 0. Como no dataset anterior.
+
+```
+# Obtendo informações sobre tipos de dados e valores não nulos
+print("\n3. df_imdb.info():")
+df_imdb.info()
+
+3. df_imdb.info():
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 62 entries, 0 to 61
+Data columns (total 7 columns):
+ #   Column             Non-Null Count  Dtype  
+---  ------             --------------  -----  
+ 0   season             62 non-null     int64  
+ 1   episode_num        62 non-null     int64  
+ 2   title              62 non-null     object 
+ 3   original_air_date  62 non-null     object 
+ 4   imdb_rating        62 non-null     float64
+ 5   total_votes        62 non-null     int64  
+ 6   desc               62 non-null     object 
+dtypes: float64(1), int64(3), object(3)
+memory usage: 3.5+ KB
+```
+
+Qualidade dos Dados - Dataset IMDb:
+Valores Ausentes:
+Não há valores ausentes em nenhuma coluna deste DataFrame. Isso é um ponto muito positivo para a qualidade dos dados do IMDb!
+
+Tipo de Dados Incorreto para Análise:
+A coluna original_air_date está como object (string) e precisa ser convertida para datetime, assim como foi necessário no df_episodes.
+
+Outras Colunas:
+As demais colunas (season, episode_num, title, imdb_rating, total_votes, desc) parecem estar com os tipos de dados corretos e sem valores ausentes.
 
 
