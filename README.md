@@ -675,11 +675,11 @@ print(df_combined.head()
 3             20912  Walt tells the rest of his family about his ca...  
 4             20546  Walt rejects everyone who tries to help him wi...
 
-´´´
+```
 
 #### Verificação Final e Preparação para Análise
 
-´´´
+```
 print("--- 7.1. Verificação Final: df_combined.info() ---")
 print("\nInformações sobre o DataFrame combinado após todo o tratamento:")
 df_combined.info()
@@ -745,8 +745,7 @@ min        16545.000000
 75%        23945.000000  
 max       150341.000000  
 std        20045.035902
-
-
+```
 
 Após o merge dos dois DataFrames, o resultado ficou excelente: mantivemos os 62 episódios e todas as colunas esperadas estão lá. A renomeação da sinopse para episode_description funcionou, assim como o tratamento de valores ausentes em us_viewers — agora todas as colunas estão completas, sem nenhum NaN.
 
