@@ -74,3 +74,35 @@ df_episodes = pd.read_csv('/content/drive/MyDrive/Projetos_Analise_de_Dados/Brea
 # Carregando o segundo arquivo
 df_imdb = pd.read_csv('/content/drive/MyDrive/Projetos_Analise_de_Dados/Breaking_Bad/breaking_bad_imdb.csv')
 ```
+
+### Exploração Inicial e Compreensão dos Dados
+
+#### Explorando df_episodes
+´´´
+# Visualizando as primeiras linhas
+print("\n1. df_episodes.head():")
+print(df_episodes.head())
+
+df_episodes.head():
+   season  episode_num_in_season  episode_num_overall  \
+0       1                      1                    1   
+1       1                      2                    2   
+2       1                      3                    3   
+3       1                      4                    4   
+4       1                      5                    5   
+
+                           title     directed_by      written_by  \
+0                          Pilot  Vince Gilligan  Vince Gilligan   
+1            Cat's in the Bag...  Adam Bernstein  Vince Gilligan   
+2  ...And the Bag's in the River  Adam Bernstein  Vince Gilligan   
+3                     Cancer Man       Jim McKay  Vince Gilligan   
+4                    Gray Matter    Tricia Brock       Patty Lin   
+
+  original_air_date  us_viewers  
+0        2008-01-20   1410000.0  
+1        2008-01-27   1490000.0  
+2        2008-02-10   1080000.0  
+3        2008-02-17   1090000.0  
+4        2008-02-24    970000.0 
+
+```
