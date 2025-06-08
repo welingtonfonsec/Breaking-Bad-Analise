@@ -332,6 +332,87 @@ Engajamento Massivo do Público (`total_votes`):
 - **count (62)**: Sem valores ausentes.
 - **mean (25.414,84 votos)**: A média de mais de **25 mil votos por episódio**
 - **min (16.545 votos)**: Episódio com **menos votos** teve mais de **16 mil votos**.
-- **max (158.341 votos)**: Esse valor é o **dado mais impactante**: reflete como a série se tornou **viral**, especialmente nos episódios finais. 
+- **max (158.341 votos)**: Esse valor é o **dado mais impactante**: reflete como a série se tornou **viral**, especialmente nos episódios finais.
 
+#### Tratamento de Valores Ausentes (Missing Values)
 
+#### Identificar Valores Ausentes
+
+No item 2.1 identificamos que a variável us_viewers (espectadores) apresentava 5 valores ausentes. Chegou o momento de ajustar esse problema. Primeiro, vamos confirmar a contagem de valores ausentes em ambos os DataFrames, para ter certeza e documentar.
+
+```
+print("--- Verificação de Valores Ausentes ---")
+
+print("\nValores ausentes em df_episodes:")
+print(df_episodes.isnull().sum())
+
+print("\nValores ausentes em df_imdb:")
+print(df_imdb.isnull().sum())
+
+--- Verificação de Valores Ausentes ---
+
+Valores ausentes em df_episodes:
+season                   0
+episode_num_in_season    0
+episode_num_overall      0
+title                    0
+directed_by              0
+written_by               0
+original_air_date        0
+us_viewers               5
+dtype: int64
+
+Valores ausentes em df_imdb:
+season               0
+episode_num          0
+title                0
+original_air_date    0
+imdb_rating          0
+total_votes          0
+desc                 0
+dtype: int64
+```
+
+Com a confirmação acima, seguiremos com os próximos passos. Note que outro dataset df_imdb não há valores ausentes.
+
+#### Estratégia de Tratamento para us_viewers em df_episodes
+
+Optei por preencher os valores ausentes com a mediana porque ela é uma medida de tendência central menos influenciada por outliers. Como a distribuição da audiência apresenta assimetrias — com alguns episódios muito acima da média —, a mediana se mostra uma alternativa mais robusta e representativa do comportamento típico da variável.
+
+print("\n--- Tratamento de Valores Ausentes em df_episodes ---")
+
+```
+# 1. Calculando a mediana da coluna 'us_viewers'
+median_us_viewers = df_episodes['us_viewers'].median()
+print(f"Mediana da coluna 'us_viewers': {median_us_viewers:.2f} milhões")
+
+# 2. Preenchendo os valores ausentes (NaN) na coluna 'us_viewers' com a mediana
+df_episodes['us_viewers'].fillna(median_us_viewers, inplace=True)
+print("Valores ausentes em 'us_viewers' preenchidos com a mediana.")
+
+# 3. Verificar novamente os valores ausentes para confirmar o tratamento
+print("\nVerificação final de valores ausentes em df_episodes:")
+print(df_episodes.isnull().sum())
+
+--- Tratamento de Valores Ausentes em df_episodes ---
+Mediana da coluna 'us_viewers': 1710000.00 milhões
+Valores ausentes em 'us_viewers' preenchidos com a mediana.
+
+Verificação final de valores ausentes em df_episodes:
+season                   0
+episode_num_in_season    0
+episode_num_overall      0
+title                    0
+directed_by              0
+written_by               0
+original_air_date        0
+us_viewers               0
+dtype: int64
+<ipython-input-43-67d1357ea5e9>:8: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+df_episodes['us_viewers'].fillna(median_us_viewers, inplace=True)
+
+```
