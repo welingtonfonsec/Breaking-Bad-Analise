@@ -822,6 +822,7 @@ plt.show()
 ```
 
 <img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/4.png" alt="" width="50%">
+
 ```
 plt.figure(figsize=(10, 6))
 sns.barplot(data=df_combined, x="season_episodes", y="imdb_rating", palette="Blues_d")
@@ -830,6 +831,7 @@ plt.xlabel("Temporada")
 plt.ylabel("IMDb Rating (Média)")
 plt.ylim(0, 10)
 plt.show()
+
 ```
 
 <img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/5.png" alt="" width="50%">
