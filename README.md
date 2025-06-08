@@ -58,3 +58,19 @@ Especificamente, este estudo de caso permite responder a perguntas como:
   * Dados Ausentes ou Parciais: Identificou-se que alguns episódios apresentavam valores ausentes em certas colunas, como US_Viewers_Millions, especialmente nas primeiras temporadas, porém foi realizado um tratamento para preencher ou gerenciar esses valores ausentes, garantindo a integridade dos dados para a análise.
   
 ## Processamento e Exploração
+
+### Carregamento dos Dados
+
+```
+import pandas as pd
+from google.colab import drive
+
+# Montar o Google Drive
+drive.mount('/content/drive')
+
+# Carregando o primeiro arquivo
+df_episodes = pd.read_csv('/content/drive/MyDrive/Projetos_Analise_de_Dados/Breaking_Bad/breaking_bad_episodes.csv')
+
+# Carregando o segundo arquivo
+df_imdb = pd.read_csv('/content/drive/MyDrive/Projetos_Analise_de_Dados/Breaking_Bad/breaking_bad_imdb.csv')
+```
