@@ -754,3 +754,30 @@ Após o merge dos dois DataFrames, o resultado ficou excelente: mantivemos os 62
 Em relação aos tipos de dados, tudo está no formato ideal: datas convertidas corretamente, colunas numéricas e categóricas bem definidas. A saída do .describe() só confirma o que já vínhamos observando — dados bem estruturados, padrões claros de audiência e notas altas no IMDb. Isso mostra que o processo de integração e limpeza foi bem-sucedido e o dataset final está pronto para análises mais aprofundadas.
 
 ## Análise e Visualização
+
+#### A Jornada de Breaking Bad: De Série Promissora a Fenômeno Aclamado – Os Dados Comprovam
+
+###### Início Promissor
+
+```
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Filtrar apenas a 1ª temporada
+temporada_1 = df_combined[df_combined['season_episodes'] == 1]
+
+# Definir estilo
+sns.set(style="whitegrid")
+plt.figure(figsize=(12, 6))
+
+# Gráfico 1: IMDb Rating por episódio da 1ª temporada
+sns.barplot(data=temporada_1, x="episode_num_in_season", y="imdb_rating", palette="Blues_d")
+plt.title("Avaliação IMDb por Episódio - Temporada 1")
+plt.xlabel("Episódio")
+plt.ylabel("IMDb Rating")
+plt.ylim(0, 10)
+plt.show()
+```
+
+<img src="https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/Graficos/1.png" alt="" width="50%">
