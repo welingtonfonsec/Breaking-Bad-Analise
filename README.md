@@ -137,7 +137,75 @@ df_episodes.tail():
 58  Michelle MacLaren        George Mastras        2013-09-08   5110000.0  
 59       Rian Johnson  Moira Walley-Beckett        2013-09-15   6370000.0  
 60        Peter Gould           Peter Gould        2013-09-22   6580000.0  
-61     Vince Gilligan        Vince Gilligan        2013-09-29  10280000.0 
+61     Vince Gilligan        Vince Gilligan        2013-09-29  10280000.0
 ```
+
+Dataset df_episodes possui **62 linhas** contando com a linha 0. Informação que confirma o número de episódios da série.
+
+```
+# Obtendo informações sobre tipos de dados e valores não nulos
+print("\n3. df_episodes.info():")
+df_episodes.info()
+
+df_episodes.info():
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 62 entries, 0 to 61
+Data columns (total 8 columns):
+ #   Column                 Non-Null Count  Dtype  
+---  ------                 --------------  -----  
+ 0   season                 62 non-null     int64  
+ 1   episode_num_in_season  62 non-null     int64  
+ 2   episode_num_overall    62 non-null     int64  
+ 3   title                  62 non-null     object 
+ 4   directed_by            62 non-null     object 
+ 5   written_by             62 non-null     object 
+ 6   original_air_date      62 non-null     object 
+ 7   us_viewers             57 non-null     float64
+dtypes: float64(1), int64(3), object(4)
+memory usage: 4.0+ KB
+```
+As colunas (season, episode_num_in_season, episode_num_overall, title, directed_by, written_by) parecem estar com os tipos de dados corretos e sem valores ausentes.
+
+Porém, temos problemas:
+
+original_air_date (object): Embora não tenha valores ausentes, o tipo é object (string). Para fazer análises temporais (como evolução por data), será necessário converter esta coluna para o tipo datetime.
+us_viewers (float64): 57 non-null de 62. Ponto Crucial de Tratamento! Esta coluna possui 5 valores ausentes. O tipo float64 está correto para representar milhões de espectadores (números com casas decimais), mas será necessário decidir como tratar esses valores faltantes.
+
+```
+# Gerando estatísticas descritivas para colunas numéricas
+print("\n5. df_episodes.describe():")
+print(df_episodes.describe())
+
+df_episodes.describe():
+          season  episode_num_in_season  episode_num_overall    us_viewers
+count  62.000000              62.000000            62.000000  5.700000e+01
+mean    3.290323               7.048387            31.500000  2.324386e+06
+std     1.359690               4.074822            18.041619  1.719224e+06
+min     1.000000               1.000000             1.000000  9.700000e+05
+25%     2.000000               4.000000            16.250000  1.460000e+06
+50%     3.000000               7.000000            31.500000  1.710000e+06
+75%     4.750000              10.000000            46.750000  2.290000e+06
+max     5.000000              16.000000            62.000000  1.028000e+07
+```
+
+Estrutura da Série:
+
+- **count (62 em todas)**: Confirma que temos dados para todos os 62 episódios.
+- **season**: O valor máximo de 5 confirma que a série tem **5 temporadas**.
+- **episode_num_in_season**: O valor máximo de 16 revela que uma temporada teve **16 episódios**.
+- **episode_num_overall**: O valor máximo de 62 confirma o **total de episódios na série**.
+
+---
+
+Audiência (`us_viewers`):
+
+**Destaques da coluna `us_viewers`:**
+- **count (57.000000)**: Há **5 valores ausentes** (62 total - 57 preenchidos).  Um ponto que precisa de tratamento.
+- **mean (2.324386 milhões)**: A **média de espectadores por episódio** em toda a série.
+- **min (0.970000 milhões)**: O episódio **menos assistido** teve **970 mil espectadores**.
+- **max (10.280000 milhões)**: O episódio **mais assistido** teve **10.28 milhões de espectadores**.
+- **50% (mediana): 1.71 milhões**: Metade dos episódios teve **menos de 1.71 milhões de espectadores**.  
+  Isso indica que a audiência foi **crescendo gradualmente ao longo da série**.
+
 
 
