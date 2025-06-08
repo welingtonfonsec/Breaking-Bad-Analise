@@ -78,11 +78,13 @@ df_imdb = pd.read_csv('/content/drive/MyDrive/Projetos_Analise_de_Dados/Breaking
 ### Exploração Inicial e Compreensão dos Dados
 
 #### Explorando df_episodes
+
 ´´´
-# Visualizando as primeiras linhas
+Visualizando as primeiras linhas
 print("\n1. df_episodes.head():")
 print(df_episodes.head())
-
+```
+´´´
 df_episodes.head():
    season  episode_num_in_season  episode_num_overall  \
 0       1                      1                    1   
@@ -104,5 +106,4 @@ df_episodes.head():
 2        2008-02-10   1080000.0  
 3        2008-02-17   1090000.0  
 4        2008-02-24    970000.0 
-
 ```
