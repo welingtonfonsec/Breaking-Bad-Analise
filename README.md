@@ -79,7 +79,7 @@ df_imdb = pd.read_csv('/content/drive/MyDrive/Projetos_Analise_de_Dados/Breaking
 
 #### Explorando df_episodes
 
-´´´
+```
 Visualizando as primeiras linhas
 print("\n1. df_episodes.head():")
 print(df_episodes.head())
