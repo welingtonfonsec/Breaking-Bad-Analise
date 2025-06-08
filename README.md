@@ -338,7 +338,7 @@ Engajamento Massivo do Público (`total_votes`):
 
 #### Identificar Valores Ausentes
 
-No item 2.1 identificamos que a variável us_viewers (espectadores) apresentava 5 valores ausentes. Chegou o momento de ajustar esse problema. Primeiro, vamos confirmar a contagem de valores ausentes em ambos os DataFrames, para ter certeza e documentar.
+Anteriormente identificamos que a variável us_viewers (espectadores) apresentava 5 valores ausentes. Chegou o momento de ajustar esse problema. Primeiro, vamos confirmar a contagem de valores ausentes em ambos os DataFrames, para ter certeza e documentar.
 
 ```
 print("--- Verificação de Valores Ausentes ---")
@@ -379,9 +379,8 @@ Com a confirmação acima, seguiremos com os próximos passos. Note que outro da
 
 Optei por preencher os valores ausentes com a mediana porque ela é uma medida de tendência central menos influenciada por outliers. Como a distribuição da audiência apresenta assimetrias — com alguns episódios muito acima da média —, a mediana se mostra uma alternativa mais robusta e representativa do comportamento típico da variável.
 
-print("\n--- Tratamento de Valores Ausentes em df_episodes ---")
-
 ```
+print("\n--- Tratamento de Valores Ausentes em df_episodes ---")
 # 1. Calculando a mediana da coluna 'us_viewers'
 median_us_viewers = df_episodes['us_viewers'].median()
 print(f"Mediana da coluna 'us_viewers': {median_us_viewers:.2f} milhões")
@@ -415,4 +414,66 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 
 df_episodes['us_viewers'].fillna(median_us_viewers, inplace=True)
 
+```
+
+#### Padronização e Limpeza de Dados
+
+#### Conversão de Tipos de Dados
+
+A conversão de original_air_date para datetime é essencial, já que o formato atual como texto limita qualquer análise temporal.
+
+```
+print("--- 4.1. Conversão de Tipos de Dados ---")
+
+# Convertendo 'original_air_date' em df_episodes para datetime
+df_episodes['original_air_date'] = pd.to_datetime(df_episodes['original_air_date'])
+print("Coluna 'original_air_date' em df_episodes convertida para datetime.")
+
+# Convertendo 'original_air_date' em df_imdb para datetime
+df_imdb['original_air_date'] = pd.to_datetime(df_imdb['original_air_date'])
+print("Coluna 'original_air_date' em df_imdb convertida para datetime.")
+
+# Verificando os tipos de dados novamente para confirmar
+print("\nNovos tipos de dados em df_episodes:")
+df_episodes.info()
+
+print("\nNovos tipos de dados em df_imdb:")
+df_imdb.info()
+
+--- 4.1. Conversão de Tipos de Dados ---
+Coluna 'original_air_date' em df_episodes convertida para datetime.
+Coluna 'original_air_date' em df_imdb convertida para datetime.
+
+Novos tipos de dados em df_episodes:
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 62 entries, 0 to 61
+Data columns (total 8 columns):
+ #   Column                 Non-Null Count  Dtype         
+---  ------                 --------------  -----         
+ 0   season                 62 non-null     int64         
+ 1   episode_num_in_season  62 non-null     int64         
+ 2   episode_num_overall    62 non-null     int64         
+ 3   title                  62 non-null     object        
+ 4   directed_by            62 non-null     object        
+ 5   written_by             62 non-null     object        
+ 6   original_air_date      62 non-null     datetime64[ns]
+ 7   us_viewers             62 non-null     float64       
+dtypes: datetime64[ns](1), float64(1), int64(3), object(3)
+memory usage: 4.0+ KB
+
+Novos tipos de dados em df_imdb:
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 62 entries, 0 to 61
+Data columns (total 7 columns):
+ #   Column             Non-Null Count  Dtype         
+---  ------             --------------  -----         
+ 0   season             62 non-null     int64         
+ 1   episode_num        62 non-null     int64         
+ 2   title              62 non-null     object        
+ 3   original_air_date  62 non-null     datetime64[ns]
+ 4   imdb_rating        62 non-null     float64       
+ 5   total_votes        62 non-null     int64         
+ 6   desc               62 non-null     object        
+dtypes: datetime64[ns](1), float64(1), int64(3), object(2)
+memory usage: 3.5+ KB
 ```
