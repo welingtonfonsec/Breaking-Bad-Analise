@@ -11,6 +11,8 @@ Apresentação em forma de [Storytelling no Power BI](https://app.powerbi.com/vi
 
 [2. Tarefa de Negócios](#tarefa-de-negócios)
 
+[3. Dados](#dados)
+
 
 
 
@@ -28,8 +30,6 @@ Para a obtenção dos insights, o trabalho iniciou-se com a etapa de Extração,
 O propósito deste estudo é ilustrar como a análise de dados e o storytelling visual são ferramentas poderosas. Elas permitem validar percepções, identificar tendências e, neste contexto, provar com base em evidências numéricas por que 'Breaking Bad' é considerada uma das maiores obras televisivas de todos os tempos.
 
 
-
-
 ## Tarefa de negócios
 
 Este estudo de caso de 'Breaking Bad' foi concebido para demonstrar a aplicação prática da análise de dados na identificação de tendências e na formulação de recomendações estratégicas, habilidades essenciais para desafios de negócio. A partir da análise detalhada de uma propriedade intelectual de entretenimento, o projeto é capaz de responder a questões fundamentais que são diretamente transferíveis a outros contextos, como o uso de dispositivos inteligentes e a estratégia de marketing de produtos.
@@ -40,4 +40,6 @@ Especificamente, este estudo de caso permite responder a perguntas como:
   * Como a aceitação inicial de 'Breaking Bad' se compara à sua performance no auge da série? 
   * Quais características ou momentos de 'Breaking Bad' geraram os maiores picos de satisfação e engajamento dos usuários? 
   * Como a análise de dados pode quantificar o sucesso de 'Breaking Bad' e fornecer argumentos baseados em evidências? 
-  * De que forma insights baseados em dados sobre 'Breaking Bad' podem apoiar ou influenciar estratégias de marketing e comunicação de um produto, ao destacar seus pontos fortes e sua trajetória de sucesso? 
+  * De que forma insights baseados em dados sobre 'Breaking Bad' podem apoiar ou influenciar estratégias de marketing e comunicação de um produto, ao destacar seus pontos fortes e sua trajetória de sucesso?
+
+## Dados
