@@ -194,7 +194,7 @@ Nesta seção, será detalhado o processo de **Extração, Transformação e Car
 * **Unificação/Combinação de Dados:** Integração de DataFrames distintos em um único conjunto de dados coerente para a análise integrada.
 * **Verificação Final e Preparação para Análise:** Validação da estrutura final dos dados antes da fase de análise e visualização.
 
-*(Detalhes técnicos e códigos podem ser encontrados no [breaking_bad.ipynb](LINK_PARA_O_ARQUIVO_IPYNB_NO_SEU_REPOSITORIO)).*
+*(Detalhes técnicos e códigos podem ser encontrados no [breaking_bad.ipynb](https://github.com/welingtonfonsec/Breaking-Bad-Analise/blob/main/breaking_bad.py)).*
 
 ---
 
