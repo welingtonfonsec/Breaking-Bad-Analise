@@ -745,7 +745,7 @@ min        16545.000000
 75%        23945.000000  
 max       150341.000000  
 std        20045.035902
-´´´
+
 
 
 Após o merge dos dois DataFrames, o resultado ficou excelente: mantivemos os 62 episódios e todas as colunas esperadas estão lá. A renomeação da sinopse para episode_description funcionou, assim como o tratamento de valores ausentes em us_viewers — agora todas as colunas estão completas, sem nenhum NaN.
